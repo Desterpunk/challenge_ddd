@@ -1,5 +1,6 @@
 package co.com.sofka.app.domain.register.entity;
 
+import co.com.sofka.app.domain.generic.Status;
 import co.com.sofka.app.domain.register.value.*;
 import co.com.sofka.domain.generic.Entity;
 
