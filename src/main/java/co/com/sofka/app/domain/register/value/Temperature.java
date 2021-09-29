@@ -10,7 +10,7 @@ public class Temperature implements ValueObject<Double> {
     public Temperature(Double value){
         this.value = Objects.requireNonNull(value, "La Temperature es necesaria");
         if (this.value < 1 || this.value > 99){
-            throw new IllegalArgumentException("La Temperatura tiene entre 1 y 2 carácteres");
+            throw new IllegalArgumentException("La Temperatura tiene entre 1 o 2 carácteres");
         }
     }
     public Double value() {

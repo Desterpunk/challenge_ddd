@@ -11,7 +11,7 @@ public class BreathingFrequency implements ValueObject<Integer> {
     public BreathingFrequency(Integer value){
         this.value = Objects.requireNonNull(value, "La frecuencia respiratoria es necesaria");
         if (this.value < 1 || this.value > 99){
-            throw new IllegalArgumentException("La frecuencia respiratoria tiene entre 1 y 2 carácteres");
+            throw new IllegalArgumentException("La frecuencia respiratoria tiene entre 1 o 2 carácteres");
         }
     }
     public Integer value() {
