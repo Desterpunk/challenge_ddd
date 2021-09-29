@@ -14,5 +14,15 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>co.com.sofka</groupId>
+      <artifactId>domain</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>co.com.sofka</groupId>
+      <artifactId>business</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 </project>
