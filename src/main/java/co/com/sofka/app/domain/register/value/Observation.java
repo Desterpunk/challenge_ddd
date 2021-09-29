@@ -14,7 +14,7 @@ public class Observation implements ValueObject<String> {
             throw new IllegalArgumentException("La observacion es necesaria");
         }
         if (this.value.length() < 3 || this.value.length() >= 50){
-            throw new IllegalArgumentException("La observacion tiene entre 4 y 49 carácteres");
+            throw new IllegalArgumentException("La observacion tiene entre 4 y 50 carácteres");
         }
     }
     public String value() {
