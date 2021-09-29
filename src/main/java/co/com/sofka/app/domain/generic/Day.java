@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Day implements ValueObject<Date> {
     public final Date value;
     public Day(Date value){
-        this.value = Objects.requireNonNull(value, "Es necesaria la fecha");
+        this.value = Objects.requireNonNull(value, "La fecha es necesaria");
     }
     public Date value() {
         return value;

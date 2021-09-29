@@ -8,9 +8,9 @@ public class IdType implements ValueObject<String>{
     private final String value;
 
     public IdType(String value) {
-        this.value = Objects.requireNonNull(value);
+        this.value = Objects.requireNonNull(value, "El Tipo de identificación es necesario");
         if (this.value.isBlank()){
-            throw new IllegalArgumentException("El Tipo de identificación es necesaria");
+            throw new IllegalArgumentException("El Tipo de identificación es necesario");
         }
         if (this.value.length() <= 0 || this.value.length() > 2){
             throw new IllegalArgumentException("El tipo de identificación tiene entre 1 y 2 carácteres Ej: CC,TI");
