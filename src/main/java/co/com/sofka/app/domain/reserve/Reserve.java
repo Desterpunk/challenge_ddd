@@ -3,6 +3,7 @@ import co.com.sofka.app.domain.generic.Day;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
+import co.com.sofka.app.domain.reserve.events.AddedReserve;
 import co.com.sofka.app.domain.reserve.value.EmployeeId;
 import co.com.sofka.app.domain.reserve.value.PaymentStatus;
 import co.com.sofka.app.domain.reserve.value.ReserveId;
@@ -22,10 +23,36 @@ public class Reserve extends AggregateEvent<ReserveId> {
 
     public Reserve(ReserveId entityId, Day day, PaymentStatus paymentStatus) {
         super(entityId);
+        appendChange(new AddedReserve(day,paymentStatus)).apply();
     }
 
     private Reserve(ReserveId reserveId) {
         super(reserveId);
+        subscribe(new ReserveChange(this));
+    }
+
+    public RegisterId getRegisterId() {
+        return registerId;
+    }
+
+    public EmployeeId getEmployeeId() {
+        return employeeId;
+    }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public Set<Kit> getKits() {
+        return kits;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
     }
 
     public static Reserve from(ReserveId reserveId, List<DomainEvent> events){
