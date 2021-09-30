@@ -11,8 +11,8 @@ public class Room extends Entity<RoomId> {
     protected Status status;
     protected BedsAmount bedsAmount;
 
-    public Room(RoomId entityId, Type type, Status status, BedsAmount bedsAmount) {
-        super(entityId);
+    public Room(RoomId roomId, Type type, Status status, BedsAmount bedsAmount) {
+        super(roomId);
         this.type = type;
         this.status = status;
         this.bedsAmount = bedsAmount;

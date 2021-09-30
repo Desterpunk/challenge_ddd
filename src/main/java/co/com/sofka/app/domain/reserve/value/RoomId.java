@@ -7,7 +7,7 @@ public class RoomId extends Identity {
 
     }
 
-    private RoomId(String id){
+    public RoomId(String id){
         super(id);
     }
 
