@@ -10,12 +10,12 @@ public class AddRoomUseCase extends UseCase<RequestCommand<AddRoom>, ResponseEve
     @Override
     public void executeUseCase(RequestCommand<AddRoom> addRoomRequestCommand) {
         var command = addRoomRequestCommand.getCommand();
-        var room = Reserve.from(command.getReserveId(), retrieveEvents(command.getReserveId().value()));
-        room.addRoom(
+        var reserve = Reserve.from(command.getReserveId(), retrieveEvents(command.getReserveId().value()));
+        reserve.addRoom(
                 command.getRoomId(),
                 command.getType(),
                 command.getStatus(),
                 command.getBedsAmount());
-        emit().onResponse(new ResponseEvents(room.getUncommittedChanges()));
+        emit().onResponse(new ResponseEvents(reserve.getUncommittedChanges()));
     }
 }

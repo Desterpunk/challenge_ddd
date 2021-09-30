@@ -7,6 +7,7 @@ import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
 import co.com.sofka.app.domain.reserve.events.AddedReserve;
 import co.com.sofka.app.domain.reserve.events.AddedRoom;
+import co.com.sofka.app.domain.reserve.events.AssignedRegister;
 import co.com.sofka.app.domain.reserve.value.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -23,8 +24,8 @@ public class Reserve extends AggregateEvent<ReserveId> {
     protected Set<Kit> kits;
     protected PaymentStatus paymentStatus;
 
-    public Reserve(ReserveId entityId, Day day, PaymentStatus paymentStatus) {
-        super(entityId);
+    public Reserve(ReserveId reserveId, Day day, PaymentStatus paymentStatus) {
+        super(reserveId);
         appendChange(new AddedReserve(day,paymentStatus)).apply();
     }
 
@@ -61,6 +62,10 @@ public class Reserve extends AggregateEvent<ReserveId> {
 
     public PaymentStatus getPaymentStatus() {
         return paymentStatus;
+    }
+
+    public void assignRegister(RegisterId registerId){
+        appendChange(new AssignedRegister(registerId)).apply();
     }
 
     public void addRoom(RoomId roomId, Type type, Status status, BedsAmount bedsAmount){

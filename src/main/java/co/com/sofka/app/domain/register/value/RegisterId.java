@@ -7,7 +7,7 @@ public class RegisterId extends Identity {
 
     }
 
-    private RegisterId(String id){
+    public RegisterId(String id){
         super(id);
     }
 
