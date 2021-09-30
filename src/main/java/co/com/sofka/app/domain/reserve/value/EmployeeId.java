@@ -8,7 +8,7 @@ public class EmployeeId extends Identity {
 
     }
 
-    private EmployeeId(String id){
+    public EmployeeId(String id){
         super(id);
     }
 

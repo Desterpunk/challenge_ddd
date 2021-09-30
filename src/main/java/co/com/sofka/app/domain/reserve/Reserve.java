@@ -1,12 +1,11 @@
 package co.com.sofka.app.domain.reserve;
-import co.com.sofka.app.domain.generic.Day;
-import co.com.sofka.app.domain.generic.Status;
-import co.com.sofka.app.domain.generic.Type;
+import co.com.sofka.app.domain.generic.*;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
 import co.com.sofka.app.domain.reserve.events.AddedReserve;
 import co.com.sofka.app.domain.reserve.events.AddedRoom;
+import co.com.sofka.app.domain.reserve.events.AssignedEmployee;
 import co.com.sofka.app.domain.reserve.events.AssignedRegister;
 import co.com.sofka.app.domain.reserve.value.*;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -66,6 +65,10 @@ public class Reserve extends AggregateEvent<ReserveId> {
 
     public void assignRegister(RegisterId registerId){
         appendChange(new AssignedRegister(registerId)).apply();
+    }
+
+    public void assignEmployee(EmployeeId employeeId, IdType idType, Name name, PhoneNumber phoneNumber, License license){
+        appendChange(new AssignedEmployee(employeeId,idType,name,phoneNumber,license)).apply();
     }
 
     public void addRoom(RoomId roomId, Type type, Status status, BedsAmount bedsAmount){
