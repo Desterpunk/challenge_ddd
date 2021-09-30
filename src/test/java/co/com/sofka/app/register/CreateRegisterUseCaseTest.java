@@ -29,14 +29,14 @@ public class CreateRegisterUseCaseTest {
         );
 
         //Act
-        var response = UseCaseHandler.getInstance().syncExecutor(
-                createRegisterUseCase, new RequestCommand<>(command)).orElseThrow();
-        var event = response.getDomainEvents();
-
+        var events = UseCaseHandler.getInstance()
+                .syncExecutor(createRegisterUseCase, new RequestCommand<>(command))
+                .orElseThrow()
+                .getDomainEvents();
         //Assert
-        AddedRegister addedRegister = (AddedRegister) event.get(0);
-        Assertions.assertEquals(2021, addedRegister.getDay().value.getYear());
-        Assertions.assertEquals(9, addedRegister.getDay().value.getMonth());
-        Assertions.assertEquals(8, addedRegister.getDay().value.getDate());
+        AddedRegister event = (AddedRegister) events.get(0);
+        Assertions.assertEquals(2021, event.getDay().value.getYear());
+        Assertions.assertEquals(9, event.getDay().value.getMonth());
+        Assertions.assertEquals(8, event.getDay().value.getDate());
     }
 }

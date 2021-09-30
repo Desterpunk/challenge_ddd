@@ -32,17 +32,17 @@ public class CreateReserveUseCaseTest {
         );
 
         //Act
-        var response = UseCaseHandler.getInstance().syncExecutor(
-                createReserveUseCase, new RequestCommand<>(command)).orElseThrow();
-
-        var event = response.getDomainEvents();
+        var events = UseCaseHandler.getInstance()
+                .syncExecutor(createReserveUseCase, new RequestCommand<>(command))
+                .orElseThrow()
+                .getDomainEvents();
 
         //Assert
-        AddedReserve addedReserve = (AddedReserve) event.get(0);
-        Assertions.assertEquals(2021,addedReserve.getDay().value.getYear());
-        Assertions.assertEquals(9, addedReserve.getDay().value.getMonth());
-        Assertions.assertEquals(8, addedReserve.getDay().value.getDate());
-        Assertions.assertEquals(true, addedReserve.getPaymentStatus().value);
+        AddedReserve event = (AddedReserve) events.get(0);
+        Assertions.assertEquals(2021,event.getDay().value.getYear());
+        Assertions.assertEquals(9, event.getDay().value.getMonth());
+        Assertions.assertEquals(8, event.getDay().value.getDate());
+        Assertions.assertEquals(true, event.getPaymentStatus().value);
     }
 
 }
