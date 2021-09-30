@@ -27,7 +27,7 @@ public class CreateReserveUseCaseTest {
     void createReserveHappyPath(){
         var command = new CreateReserve(
                 ReserveId.of("01"),
-                new Day(new Date(1999,01,9)),
+                new Day(new Date(2021,9,8)),
                 new PaymentStatus(true)
         );
 
@@ -39,9 +39,9 @@ public class CreateReserveUseCaseTest {
 
         //Assert
         AddedReserve addedReserve = (AddedReserve) event.get(0);
-        Assertions.assertEquals(1999,addedReserve.getDay().value.getYear());
-        Assertions.assertEquals(01, addedReserve.getDay().value.getMonth());
-        Assertions.assertEquals(9, addedReserve.getDay().value.getDate());
+        Assertions.assertEquals(2021,addedReserve.getDay().value.getYear());
+        Assertions.assertEquals(9, addedReserve.getDay().value.getMonth());
+        Assertions.assertEquals(8, addedReserve.getDay().value.getDate());
         Assertions.assertEquals(true, addedReserve.getPaymentStatus().value);
     }
 
