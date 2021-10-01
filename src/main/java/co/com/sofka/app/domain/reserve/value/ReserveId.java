@@ -7,7 +7,7 @@ public class ReserveId extends Identity {
 
     }
 
-    private ReserveId(String id){
+    public ReserveId(String id){
         super(id);
     }
 

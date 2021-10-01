@@ -83,4 +83,8 @@ public class Reserve extends AggregateEvent<ReserveId> {
         Objects.requireNonNull(supplie);
         appendChange(new AddedKit(kitId,type,medicine,supplie)).apply();
     }
+
+    public void sendNotification(String message){
+        appendChange(new SentNotification(message)).apply();
+    }
 }
