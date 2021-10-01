@@ -1,7 +1,9 @@
 package co.com.sofka.app.domain.register;
 
 import co.com.sofka.app.domain.register.entity.Doctor;
+import co.com.sofka.app.domain.register.entity.Progress;
 import co.com.sofka.app.domain.register.events.AddedDoctor;
+import co.com.sofka.app.domain.register.events.AddedProgress;
 import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.events.AssignedPatient;
 import co.com.sofka.domain.generic.EventChange;
@@ -23,6 +25,16 @@ public class RegisterChange extends EventChange {
                     event.getName(),
                     event.getPhoneNumber(),
                     event.getSpecialty()
+            ));
+        });
+
+        apply((AddedProgress event) -> {
+            register.progresses.add(new Progress(
+                    event.getProgressId(),
+                    event.getStatus(),
+                    event.getTemperature(),
+                    event.getBreathingFrequency(),
+                    event.getObservation()
             ));
         });
 

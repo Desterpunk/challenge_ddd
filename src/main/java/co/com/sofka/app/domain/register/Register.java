@@ -1,11 +1,9 @@
 package co.com.sofka.app.domain.register;
-import co.com.sofka.app.domain.generic.Day;
-import co.com.sofka.app.domain.generic.IdType;
-import co.com.sofka.app.domain.generic.Name;
-import co.com.sofka.app.domain.generic.PhoneNumber;
+import co.com.sofka.app.domain.generic.*;
 import co.com.sofka.app.domain.register.entity.Doctor;
 import co.com.sofka.app.domain.register.entity.Progress;
 import co.com.sofka.app.domain.register.events.AddedDoctor;
+import co.com.sofka.app.domain.register.events.AddedProgress;
 import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.events.AssignedPatient;
 import co.com.sofka.app.domain.register.value.*;
@@ -65,5 +63,14 @@ public class Register extends AggregateEvent<RegisterId>{
         Objects.requireNonNull(phoneNumber);
         Objects.requireNonNull(specialty);
         appendChange(new AddedDoctor(doctorId, idType, name, phoneNumber, specialty)).apply();
+    }
+
+    public void addProgress(ProgressId progressId, Status status, Temperature temperature, BreathingFrequency breathingFrequency, Observation observation){
+        Objects.requireNonNull(progressId);
+        Objects.requireNonNull(status);
+        Objects.requireNonNull(temperature);
+        Objects.requireNonNull(breathingFrequency);
+        Objects.requireNonNull(observation);
+        appendChange(new AddedProgress(progressId,status,temperature,breathingFrequency,observation));
     }
 }

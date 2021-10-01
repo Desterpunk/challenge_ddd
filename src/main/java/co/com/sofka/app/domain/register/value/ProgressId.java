@@ -7,7 +7,7 @@ public class ProgressId extends Identity {
 
     }
 
-    private ProgressId(String id){
+    public ProgressId(String id){
         super(id);
     }
 
