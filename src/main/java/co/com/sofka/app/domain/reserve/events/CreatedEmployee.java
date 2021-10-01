@@ -1,30 +1,32 @@
-package co.com.sofka.app.domain.register.events;
+package co.com.sofka.app.domain.reserve.events;
 
 import co.com.sofka.app.domain.generic.IdType;
 import co.com.sofka.app.domain.generic.Name;
 import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.value.Eps;
 import co.com.sofka.app.domain.register.value.PatientId;
+import co.com.sofka.app.domain.reserve.value.EmployeeId;
+import co.com.sofka.app.domain.reserve.value.License;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class CreatedPatient extends DomainEvent {
-    private final PatientId patientId;
+public class CreatedEmployee extends DomainEvent {
+    private final EmployeeId employeeId;
     private final IdType idType;
     private final Name name;
     private final PhoneNumber phoneNumber;
-    private final Eps eps;
+    private final License license;
 
-    public CreatedPatient(PatientId patientId, IdType idType, Name name, PhoneNumber phoneNumber, Eps eps){
-        super("domain.register.createdpatient");
-        this.patientId = patientId;
+    public CreatedEmployee(EmployeeId employeeId, IdType idType, Name name, PhoneNumber phoneNumber, License license){
+        super("domain.register.createdemployee");
+        this.employeeId = employeeId;
         this.idType = idType;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.eps = eps;
+        this.license = license;
     }
 
-    public PatientId getPatientId() {
-        return patientId;
+    public EmployeeId getEmployeeId() {
+        return employeeId;
     }
 
     public IdType getIdType() {
@@ -39,7 +41,7 @@ public class CreatedPatient extends DomainEvent {
         return phoneNumber;
     }
 
-    public Eps getEps() {
-        return eps;
+    public License getLicense() {
+        return license;
     }
 }

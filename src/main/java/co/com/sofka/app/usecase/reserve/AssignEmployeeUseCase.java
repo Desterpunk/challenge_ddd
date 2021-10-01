@@ -12,8 +12,12 @@ public class AssignEmployeeUseCase extends UseCase<RequestCommand<AssignEmployee
     public void executeUseCase(RequestCommand<AssignEmployee> assignEmployeeRequestCommand) {
         var command = assignEmployeeRequestCommand.getCommand();
         var reserve = Reserve.from(command.getReserveId(), retrieveEvents(command.getEmployeeId().value()));
-        reserve.assignEmployee(command.getEmployeeId(), command.getIdType(), command.getName(), command.getPhoneNumber(),command.getLicense());
+        try {
+            reserve.assignEmployee(command.getEmployeeId());
+            emit().onResponse(new ResponseEvents(reserve.getUncommittedChanges()));
+        } catch (Exception e){
+            emit().onError(new RuntimeException("No se encontro un empleado con ese id"));
+        }
 
-        emit().onResponse(new ResponseEvents(reserve.getUncommittedChanges()));
     }
 }

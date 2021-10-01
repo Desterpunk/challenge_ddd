@@ -1,5 +1,6 @@
 package co.com.sofka.app.domain.reserve;
 
+import co.com.sofka.app.domain.register.events.CreatedPatient;
 import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
 import co.com.sofka.app.domain.reserve.events.*;
@@ -39,7 +40,14 @@ public class ReserveChange extends EventChange {
             reserve.registerId = event.getRegisterId();
         });
 
+        apply((CreatedEmployee event) -> {
+            reserve.employeeId = event.getEmployeeId();
+        });
+
         apply((AssignedEmployee event) -> {
+            if (!reserve.employeeId.equals(event.getEmployeeId())){
+                throw new IllegalArgumentException("No se encontro un empleado con ese id");
+            }
             reserve.employeeId = event.getEmployeeId();
         });
     }

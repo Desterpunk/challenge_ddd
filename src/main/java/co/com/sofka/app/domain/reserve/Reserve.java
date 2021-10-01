@@ -64,8 +64,8 @@ public class Reserve extends AggregateEvent<ReserveId> {
         appendChange(new AssignedRegister(registerId)).apply();
     }
 
-    public void assignEmployee(EmployeeId employeeId, IdType idType, Name name, PhoneNumber phoneNumber, License license){
-        appendChange(new AssignedEmployee(employeeId,idType,name,phoneNumber,license)).apply();
+    public void assignEmployee(EmployeeId employeeId){
+        appendChange(new AssignedEmployee(employeeId)).apply();
     }
 
     public void addRoom(RoomId roomId, Type type, Status status, BedsAmount bedsAmount){

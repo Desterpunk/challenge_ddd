@@ -10,6 +10,7 @@ import co.com.sofka.app.domain.reserve.commands.AssignRegister;
 import co.com.sofka.app.domain.reserve.events.AddedReserve;
 import co.com.sofka.app.domain.reserve.events.AssignedEmployee;
 import co.com.sofka.app.domain.reserve.events.AssignedRegister;
+import co.com.sofka.app.domain.reserve.events.CreatedEmployee;
 import co.com.sofka.app.domain.reserve.value.EmployeeId;
 import co.com.sofka.app.domain.reserve.value.License;
 import co.com.sofka.app.domain.reserve.value.PaymentStatus;
@@ -47,7 +48,7 @@ public class AssignEmployeeUseCaseTest {
     void assignEmployeeHappyPath(){
         var command = new AssignEmployee(
                 ReserveId.of("01"),
-                new EmployeeId("01")
+                EmployeeId.of("01")
         );
         Mockito.when(repository.getEventsBy(ArgumentMatchers.any())).thenReturn(eventStored());
 
@@ -66,7 +67,14 @@ public class AssignEmployeeUseCaseTest {
         return List.of(
                 new AddedReserve(
                         new Day(new Date(1999,1,8)),
-                        new PaymentStatus(true))
+                        new PaymentStatus(true)),
+                new CreatedEmployee(
+                        new EmployeeId("015"),
+                        new IdType("CC"),
+                        new Name("maria"),
+                        new PhoneNumber("2123123123"),
+                        new License("1231232")
+                )
         );
     }
 }

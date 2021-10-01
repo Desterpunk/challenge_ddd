@@ -12,10 +12,6 @@ import co.com.sofka.domain.generic.Command;
 public class AssignEmployee implements Command {
     private final ReserveId reserveId;
     private final EmployeeId employeeId;
-    private IdType idType;
-    private Name name;
-    private PhoneNumber phoneNumber;
-    private License license;
 
     public AssignEmployee(ReserveId reserveId, EmployeeId employeeId){
         this.reserveId = reserveId;
@@ -28,21 +24,5 @@ public class AssignEmployee implements Command {
 
     public EmployeeId getEmployeeId() {
         return employeeId;
-    }
-
-    public IdType getIdType() {
-        return idType;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public License getLicense() {
-        return license;
     }
 }
