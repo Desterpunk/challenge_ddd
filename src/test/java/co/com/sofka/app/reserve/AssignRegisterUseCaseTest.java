@@ -45,7 +45,7 @@ public class AssignRegisterUseCaseTest {
     }
 
     @Test
-    void addRoomHappyPath(){
+    void assignRegisterHappyPath(){
         var command = new AssignRegister(
                 ReserveId.of("01"),
                 new RegisterId("01")
