@@ -2,16 +2,14 @@ package co.com.sofka.app.domain.register;
 import co.com.sofka.app.domain.generic.*;
 import co.com.sofka.app.domain.register.entity.Doctor;
 import co.com.sofka.app.domain.register.entity.Progress;
-import co.com.sofka.app.domain.register.events.AddedDoctor;
-import co.com.sofka.app.domain.register.events.AddedProgress;
-import co.com.sofka.app.domain.register.events.AddedRegister;
-import co.com.sofka.app.domain.register.events.AssignedPatient;
+import co.com.sofka.app.domain.register.events.*;
 import co.com.sofka.app.domain.register.value.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Register extends AggregateEvent<RegisterId>{
@@ -52,7 +50,19 @@ public class Register extends AggregateEvent<RegisterId>{
         return progresses;
     }
 
+    protected Optional<Doctor> getDoctorById(DoctorId doctorId){
+        return doctors
+                .stream()
+                .filter(doctor -> doctor.identity().equals(doctorId))
+                .findFirst();
+    }
+
     public void assignPatient(PatientId patientId, IdType idType, Name name, PhoneNumber phoneNumber, Eps eps){
+        Objects.requireNonNull(patientId);
+        Objects.requireNonNull(idType);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(phoneNumber);
+        Objects.requireNonNull(eps);
         appendChange(new AssignedPatient(patientId, idType, name, phoneNumber, eps)).apply();
     }
 
@@ -71,6 +81,12 @@ public class Register extends AggregateEvent<RegisterId>{
         Objects.requireNonNull(temperature);
         Objects.requireNonNull(breathingFrequency);
         Objects.requireNonNull(observation);
-        appendChange(new AddedProgress(progressId,status,temperature,breathingFrequency,observation));
+        appendChange(new AddedProgress(progressId,status,temperature,breathingFrequency,observation)).apply();
+    }
+
+    public void updatePhoneNumberDoctor(DoctorId doctorId, PhoneNumber phoneNumber){
+        Objects.requireNonNull(doctorId);
+        Objects.requireNonNull(phoneNumber);
+        appendChange(new UpdatedPhoneNumberDoctor(doctorId,phoneNumber)).apply();
     }
 }

@@ -1,6 +1,9 @@
 package co.com.sofka.app.register;
 
 import co.com.sofka.app.domain.generic.Day;
+import co.com.sofka.app.domain.generic.IdType;
+import co.com.sofka.app.domain.generic.Name;
+import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.commands.AssignPatient;
 import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.events.AssignedPatient;
@@ -44,7 +47,7 @@ public class AssignPatientUseCaseTest {
     void assignPatientHappyPath(){
         var command = new AssignPatient(
                 RegisterId.of("01"),
-                new PatientId("01")
+                PatientId.of("01")
         );
         Mockito.when(repository.getEventsBy(ArgumentMatchers.any())).thenReturn(eventStored());
 

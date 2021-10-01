@@ -7,6 +7,8 @@ import co.com.sofka.app.domain.register.value.DoctorId;
 import co.com.sofka.app.domain.register.value.Specialty;
 import co.com.sofka.domain.generic.Entity;
 
+import java.util.Objects;
+
 public class Doctor extends Entity<DoctorId> {
     protected IdType idType;
     protected Name name;
@@ -19,6 +21,10 @@ public class Doctor extends Entity<DoctorId> {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.specialty = specialty;
+    }
+
+    public void updatePhoneNumberDoctor(PhoneNumber phoneNumber){
+        this.phoneNumber = Objects.requireNonNull(phoneNumber);
     }
 
     public IdType getIdType() {

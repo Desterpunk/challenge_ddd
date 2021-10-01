@@ -2,10 +2,7 @@ package co.com.sofka.app.domain.register;
 
 import co.com.sofka.app.domain.register.entity.Doctor;
 import co.com.sofka.app.domain.register.entity.Progress;
-import co.com.sofka.app.domain.register.events.AddedDoctor;
-import co.com.sofka.app.domain.register.events.AddedProgress;
-import co.com.sofka.app.domain.register.events.AddedRegister;
-import co.com.sofka.app.domain.register.events.AssignedPatient;
+import co.com.sofka.app.domain.register.events.*;
 import co.com.sofka.domain.generic.EventChange;
 
 import java.util.HashSet;
@@ -40,6 +37,12 @@ public class RegisterChange extends EventChange {
 
         apply((AssignedPatient event) -> {
             register.patientId = event.getPatientId();
+        });
+
+        apply((UpdatedPhoneNumberDoctor event) -> {
+            var doctor = register.getDoctorById(event.getDoctorId())
+                    .orElseThrow(() -> new IllegalArgumentException("No se encontro un doctor con ese id"));
+            doctor.updatePhoneNumberDoctor (event.getPhoneNumber());
         });
     }
 }
