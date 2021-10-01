@@ -1,8 +1,13 @@
 package co.com.sofka.app.domain.register;
 import co.com.sofka.app.domain.generic.Day;
+import co.com.sofka.app.domain.generic.IdType;
+import co.com.sofka.app.domain.generic.Name;
+import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.entity.Doctor;
 import co.com.sofka.app.domain.register.entity.Progress;
 import co.com.sofka.app.domain.register.events.AddedRegister;
+import co.com.sofka.app.domain.register.events.AssignedPatient;
+import co.com.sofka.app.domain.register.value.Eps;
 import co.com.sofka.app.domain.register.value.PatientId;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -41,6 +46,10 @@ public class Register extends AggregateEvent<RegisterId>{
 
     public Set<Progress> getProgresses() {
         return progresses;
+    }
+
+    public void assignPatient(PatientId patientId, IdType idType, Name name, PhoneNumber phoneNumber, Eps eps){
+        appendChange(new AssignedPatient(patientId, idType, name, phoneNumber, eps)).apply();
     }
 
     public static Register from(RegisterId registerId, List<DomainEvent> events){

@@ -7,7 +7,7 @@ public class PatientId extends Identity {
 
     }
 
-    private PatientId(String id){
+    public PatientId(String id){
         super(id);
     }
 
