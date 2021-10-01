@@ -33,7 +33,6 @@ import java.util.Date;
 import java.util.List;
 
 
-@ExtendWith(MockitoExtension.class)
 class NotificationRegisterAssignedUseCaseTest {
     private NotificationRegisterAssignedUseCase notificationRegisterAssignedUseCase;
 

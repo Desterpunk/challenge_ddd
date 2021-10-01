@@ -4,6 +4,7 @@ import co.com.sofka.app.domain.register.entity.Doctor;
 import co.com.sofka.app.domain.register.entity.Progress;
 import co.com.sofka.app.domain.register.events.*;
 import co.com.sofka.app.domain.register.value.*;
+import co.com.sofka.app.domain.reserve.events.SentNotification;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
@@ -83,5 +84,9 @@ public class Register extends AggregateEvent<RegisterId>{
         Objects.requireNonNull(doctorId);
         Objects.requireNonNull(phoneNumber);
         appendChange(new UpdatedPhoneNumberDoctor(doctorId,phoneNumber)).apply();
+    }
+
+    public void sendNotification(String message) {
+        appendChange(new SentNotification(message)).apply();
     }
 }
