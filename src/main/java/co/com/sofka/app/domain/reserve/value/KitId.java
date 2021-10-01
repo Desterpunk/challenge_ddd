@@ -7,7 +7,7 @@ public class KitId extends Identity {
 
     }
 
-    private KitId(String id){
+    public KitId(String id){
         super(id);
     }
 

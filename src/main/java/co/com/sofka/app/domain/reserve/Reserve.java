@@ -3,10 +3,7 @@ import co.com.sofka.app.domain.generic.*;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
-import co.com.sofka.app.domain.reserve.events.AddedReserve;
-import co.com.sofka.app.domain.reserve.events.AddedRoom;
-import co.com.sofka.app.domain.reserve.events.AssignedEmployee;
-import co.com.sofka.app.domain.reserve.events.AssignedRegister;
+import co.com.sofka.app.domain.reserve.events.*;
 import co.com.sofka.app.domain.reserve.value.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -77,5 +74,13 @@ public class Reserve extends AggregateEvent<ReserveId> {
         Objects.requireNonNull(status);
         Objects.requireNonNull(bedsAmount);
         appendChange(new AddedRoom(roomId,type,status,bedsAmount)).apply();
+    }
+
+    public void addKit(KitId kitId,Type type,Medicine medicine,Supplie supplie){
+        Objects.requireNonNull(kitId);
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(medicine);
+        Objects.requireNonNull(supplie);
+        appendChange(new AddedKit(kitId,type,medicine,supplie)).apply();
     }
 }

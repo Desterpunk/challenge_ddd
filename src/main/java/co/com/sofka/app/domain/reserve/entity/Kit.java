@@ -11,8 +11,8 @@ public class Kit extends Entity<KitId> {
     protected Medicine medicine;
     protected Supplie supplie;
 
-    public Kit(KitId entityId, Type type, Medicine medicine, Supplie supplie) {
-        super(entityId);
+    public Kit(KitId kitId, Type type, Medicine medicine, Supplie supplie) {
+        super(kitId);
         this.type = type;
         this.medicine = medicine;
         this.supplie = supplie;
