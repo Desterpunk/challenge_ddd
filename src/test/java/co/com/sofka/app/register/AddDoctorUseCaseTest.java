@@ -6,6 +6,7 @@ import co.com.sofka.app.domain.generic.IdType;
 import co.com.sofka.app.domain.generic.Name;
 import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.commands.AddDoctor;
+import co.com.sofka.app.domain.register.events.AddedDoctor;
 import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.value.DoctorId;
 import co.com.sofka.app.domain.register.value.RegisterId;
@@ -55,6 +56,13 @@ public class AddDoctorUseCaseTest {
                 .syncExecutor(addDoctorUseCase, new RequestCommand<>(command))
                 .orElseThrow()
                 .getDomainEvents();
+
+        AddedDoctor event = (AddedDoctor) events.get(0);
+        Assertions.assertEquals("1011212", event.getDoctorId().value());
+        Assertions.assertEquals("RC", event.getIdType().value());
+        Assertions.assertEquals("Carlos", event.getName().value());
+        Assertions.assertEquals("212121155", event.getPhoneNumber().value());
+        Assertions.assertEquals("Neurologic", event.getSpecialty().value());
     }
 
     private List<DomainEvent> eventStored() {
