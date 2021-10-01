@@ -35,7 +35,14 @@ public class RegisterChange extends EventChange {
             ));
         });
 
+        apply((CreatedPatient event) -> {
+            register.patientId = event.getPatientId();
+        });
+
         apply((AssignedPatient event) -> {
+            if (!register.patientId.equals(event.getPatientId())){
+                throw new IllegalArgumentException("No se encontro un paciente con ese id");
+            }
             register.patientId = event.getPatientId();
         });
 

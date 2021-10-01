@@ -11,10 +11,6 @@ import co.com.sofka.domain.generic.Command;
 public class AssignPatient implements Command {
     private final RegisterId registerId;
     private final PatientId patientId;
-    private IdType idType;
-    private Name name;
-    private PhoneNumber phoneNumber;
-    private Eps eps;
 
     public AssignPatient(RegisterId registerId, PatientId patientId) {
         this.registerId = registerId;
@@ -27,21 +23,5 @@ public class AssignPatient implements Command {
 
     public PatientId getPatientId() {
         return patientId;
-    }
-
-    public IdType getIdType() {
-        return idType;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Eps getEps() {
-        return eps;
     }
 }

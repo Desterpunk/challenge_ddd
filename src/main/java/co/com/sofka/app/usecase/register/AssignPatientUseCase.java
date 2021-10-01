@@ -12,8 +12,12 @@ public class AssignPatientUseCase extends UseCase<RequestCommand<AssignPatient>,
     public void executeUseCase(RequestCommand<AssignPatient> assignPatientRequestCommand) {
         var command = assignPatientRequestCommand.getCommand();
         var register = Register.from(command.getRegisterId(), retrieveEvents(command.getPatientId().value()));
-        register.assignPatient(command.getPatientId(),command.getIdType(),command.getName(),command.getPhoneNumber(),command.getEps());
+        try {
+            register.assignPatient(command.getPatientId());
+            emit().onResponse(new ResponseEvents(register.getUncommittedChanges()));
+        } catch (Exception e){
+            emit().onError(new RuntimeException("No se encontro un paciente con ese id"));
+        }
 
-        emit().onResponse(new ResponseEvents(register.getUncommittedChanges()));
     }
 }

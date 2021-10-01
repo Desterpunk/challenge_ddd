@@ -7,6 +7,8 @@ import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.commands.AssignPatient;
 import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.events.AssignedPatient;
+import co.com.sofka.app.domain.register.events.CreatedPatient;
+import co.com.sofka.app.domain.register.value.Eps;
 import co.com.sofka.app.domain.register.value.PatientId;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.app.domain.reserve.commands.AssignEmployee;
@@ -47,7 +49,7 @@ public class AssignPatientUseCaseTest {
     void assignPatientHappyPath(){
         var command = new AssignPatient(
                 RegisterId.of("01"),
-                PatientId.of("01")
+                PatientId.of("555")
         );
         Mockito.when(repository.getEventsBy(ArgumentMatchers.any())).thenReturn(eventStored());
 
@@ -58,14 +60,21 @@ public class AssignPatientUseCaseTest {
                 .getDomainEvents();
 
         AssignedPatient event = (AssignedPatient) events.get(0);
-        Assertions.assertEquals("01",event.getPatientId().value());
+        Assertions.assertEquals("555",event.getPatientId().value());
         Mockito.verify(repository).getEventsBy(ArgumentMatchers.any());
     }
 
     private List<DomainEvent> eventStored() {
         return List.of(
                 new AddedRegister(
-                        new Day(new Date(1999,1,8)))
+                        new Day(new Date(1999,1,8))),
+                new CreatedPatient(
+                        new PatientId("555"),
+                        new IdType("CC"),
+                        new Name("paco"),
+                        new PhoneNumber("321323"),
+                        new Eps("Sura")
+                )
         );
     }
 }

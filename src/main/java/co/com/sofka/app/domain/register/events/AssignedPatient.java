@@ -9,37 +9,13 @@ import co.com.sofka.domain.generic.DomainEvent;
 
 public class AssignedPatient extends DomainEvent {
     private final PatientId patientId;
-    private final IdType idType;
-    private final Name name;
-    private final PhoneNumber phoneNumber;
-    private final Eps eps;
 
-    public AssignedPatient(PatientId patientId, IdType idType, Name name, PhoneNumber phoneNumber, Eps eps){
+    public AssignedPatient(PatientId patientId){
         super("domain.register.assignedpatient");
         this.patientId = patientId;
-        this.idType = idType;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.eps = eps;
     }
 
     public PatientId getPatientId() {
         return patientId;
-    }
-
-    public IdType getIdType() {
-        return idType;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Eps getEps() {
-        return eps;
     }
 }

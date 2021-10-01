@@ -57,13 +57,8 @@ public class Register extends AggregateEvent<RegisterId>{
                 .findFirst();
     }
 
-    public void assignPatient(PatientId patientId, IdType idType, Name name, PhoneNumber phoneNumber, Eps eps){
-        Objects.requireNonNull(patientId);
-        Objects.requireNonNull(idType);
-        Objects.requireNonNull(name);
-        Objects.requireNonNull(phoneNumber);
-        Objects.requireNonNull(eps);
-        appendChange(new AssignedPatient(patientId, idType, name, phoneNumber, eps)).apply();
+    public void assignPatient(PatientId patientId){
+        appendChange(new AssignedPatient(patientId)).apply();
     }
 
     public void addDoctor(DoctorId doctorId, IdType idType, Name name, PhoneNumber phoneNumber, Specialty specialty){
