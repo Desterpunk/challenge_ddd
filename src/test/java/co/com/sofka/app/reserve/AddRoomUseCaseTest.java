@@ -11,7 +11,6 @@ import co.com.sofka.app.domain.reserve.value.PaymentStatus;
 import co.com.sofka.app.domain.reserve.value.ReserveId;
 import co.com.sofka.app.domain.reserve.value.RoomId;
 import co.com.sofka.app.usecase.reserve.AddRoomUseCase;
-import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
@@ -19,7 +18,6 @@ import co.com.sofka.domain.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -28,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class AddRoomUseCaseTest {
+class AddRoomUseCaseTest {
     private AddRoomUseCase addRoomUseCase;
 
     @Mock
@@ -60,7 +58,7 @@ public class AddRoomUseCaseTest {
 
         AddedRoom event = (AddedRoom) events.get(0);
         Assertions.assertEquals("01",event.getRoomId().value());
-        Assertions.assertEquals("normal",event.getType().value());
+        Assertions.assertEquals("normal",event.getKind().value());
         Assertions.assertEquals("clean and fresh",event.getStatus().value());
         Assertions.assertEquals(1,event.getBedsAmount().value());
     }

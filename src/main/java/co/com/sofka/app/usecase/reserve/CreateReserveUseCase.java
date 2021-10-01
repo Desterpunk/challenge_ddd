@@ -1,7 +1,6 @@
 package co.com.sofka.app.usecase.reserve;
 
 import co.com.sofka.app.domain.generic.Day;
-import co.com.sofka.app.domain.register.Register;
 import co.com.sofka.app.domain.reserve.Reserve;
 import co.com.sofka.app.domain.reserve.commands.CreateReserve;
 import co.com.sofka.business.generic.UseCase;
@@ -18,7 +17,7 @@ public class CreateReserveUseCase extends UseCase<RequestCommand<CreateReserve>,
         Date actualDate = new Date();
         actualDate.setYear(actualDate.getYear()+1900);
         Reserve reserve;
-        if (command.getDay().value.before(actualDate)){
+        if (command.getDay().date.before(actualDate)){
             reserve = new Reserve(command.getReserveId(),
                     new Day(actualDate),
                     command.getPaymentStatus());

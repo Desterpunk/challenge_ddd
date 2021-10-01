@@ -15,29 +15,23 @@ public class RegisterChange extends EventChange {
             register.progresses = new HashSet<>();
         });
 
-        apply((AddedDoctor event) -> {
-            register.doctors.add(new Doctor(
-                    event.getDoctorId(),
-                    event.getIdType(),
-                    event.getName(),
-                    event.getPhoneNumber(),
-                    event.getSpecialty()
-            ));
-        });
+        apply((AddedDoctor event) -> register.doctors.add(new Doctor(
+                event.getDoctorId(),
+                event.getIdType(),
+                event.getName(),
+                event.getPhoneNumber(),
+                event.getSpecialty()
+        )));
 
-        apply((AddedProgress event) -> {
-            register.progresses.add(new Progress(
-                    event.getProgressId(),
-                    event.getStatus(),
-                    event.getTemperature(),
-                    event.getBreathingFrequency(),
-                    event.getObservation()
-            ));
-        });
+        apply((AddedProgress event) -> register.progresses.add(new Progress(
+                event.getProgressId(),
+                event.getStatus(),
+                event.getTemperature(),
+                event.getBreathingFrequency(),
+                event.getObservation()
+        )));
 
-        apply((CreatedPatient event) -> {
-            register.patientId = event.getPatientId();
-        });
+        apply((CreatedPatient event) -> register.patientId = event.getPatientId());
 
         apply((AssignedPatient event) -> {
             if (!register.patientId.equals(event.getPatientId())){

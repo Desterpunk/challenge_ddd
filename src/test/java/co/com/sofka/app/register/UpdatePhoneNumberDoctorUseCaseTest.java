@@ -26,7 +26,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class UpdatePhoneNumberDoctorUseCaseTest {
+class UpdatePhoneNumberDoctorUseCaseTest {
     private UpdatePhoneNumberDoctorUseCase updatePhoneNumberDoctorUseCase;
 
     @Mock

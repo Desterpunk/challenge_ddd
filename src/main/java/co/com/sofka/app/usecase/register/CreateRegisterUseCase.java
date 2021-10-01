@@ -7,7 +7,6 @@ import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class CreateRegisterUseCase extends UseCase<RequestCommand<CreateRegister>, ResponseEvents> {
@@ -18,7 +17,7 @@ public class CreateRegisterUseCase extends UseCase<RequestCommand<CreateRegister
         actualDate.setYear(actualDate.getYear()+1900);
 
         Register register;
-        if (command.getDay().value.before(actualDate)){
+        if (command.getDay().date.before(actualDate)){
             register = new Register(
                     command.getRegisterId(),
                     new Day(actualDate)

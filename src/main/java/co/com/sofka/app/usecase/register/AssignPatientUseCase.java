@@ -2,7 +2,7 @@ package co.com.sofka.app.usecase.register;
 
 import co.com.sofka.app.domain.register.Register;
 import co.com.sofka.app.domain.register.commands.AssignPatient;
-import co.com.sofka.app.domain.reserve.Reserve;
+
 import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;

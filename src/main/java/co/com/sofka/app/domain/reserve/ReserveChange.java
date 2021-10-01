@@ -1,6 +1,5 @@
 package co.com.sofka.app.domain.reserve;
 
-import co.com.sofka.app.domain.register.events.CreatedPatient;
 import co.com.sofka.app.domain.reserve.entity.Kit;
 import co.com.sofka.app.domain.reserve.entity.Room;
 import co.com.sofka.app.domain.reserve.events.*;
@@ -18,31 +17,23 @@ public class ReserveChange extends EventChange {
             reserve.kits = new HashSet<>();
         });
 
-        apply((AddedRoom event) -> {
-            reserve.rooms.add(new Room(
-                    event.getRoomId(),
-                    event.getType(),
-                    event.getStatus(),
-                    event.getBedsAmount()
-            ));
-        });
+        apply((AddedRoom event) -> reserve.rooms.add(new Room(
+                event.getRoomId(),
+                event.getKind(),
+                event.getStatus(),
+                event.getBedsAmount()
+        )));
 
-        apply((AddedKit event) -> {
-            reserve.kits.add(new Kit(
-                    event.getKitId(),
-                    event.getType(),
-                    event.getMedicine(),
-                    event.getSupplie()
-            ));
-        });
+        apply((AddedKit event) -> reserve.kits.add(new Kit(
+                event.getKitId(),
+                event.getKind(),
+                event.getMedicine(),
+                event.getSupplie()
+        )));
 
-        apply((AssignedRegister event) -> {
-            reserve.registerId = event.getRegisterId();
-        });
+        apply((AssignedRegister event) -> reserve.registerId = event.getRegisterId());
 
-        apply((CreatedEmployee event) -> {
-            reserve.employeeId = event.getEmployeeId();
-        });
+        apply((CreatedEmployee event) -> reserve.employeeId = event.getEmployeeId());
 
         apply((AssignedEmployee event) -> {
             if (!reserve.employeeId.equals(event.getEmployeeId())){

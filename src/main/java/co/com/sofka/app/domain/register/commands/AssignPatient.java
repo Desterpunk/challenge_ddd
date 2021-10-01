@@ -1,9 +1,6 @@
 package co.com.sofka.app.domain.register.commands;
 
-import co.com.sofka.app.domain.generic.IdType;
-import co.com.sofka.app.domain.generic.Name;
-import co.com.sofka.app.domain.generic.PhoneNumber;
-import co.com.sofka.app.domain.register.value.Eps;
+
 import co.com.sofka.app.domain.register.value.PatientId;
 import co.com.sofka.app.domain.register.value.RegisterId;
 import co.com.sofka.domain.generic.Command;

@@ -1,16 +1,12 @@
 package co.com.sofka.app.reserve;
 
 import co.com.sofka.app.domain.generic.Day;
-import co.com.sofka.app.domain.generic.Status;
 import co.com.sofka.app.domain.generic.Type;
 import co.com.sofka.app.domain.reserve.commands.AddKit;
-import co.com.sofka.app.domain.reserve.commands.AddRoom;
 import co.com.sofka.app.domain.reserve.events.AddedKit;
 import co.com.sofka.app.domain.reserve.events.AddedReserve;
-import co.com.sofka.app.domain.reserve.events.AddedRoom;
 import co.com.sofka.app.domain.reserve.value.*;
 import co.com.sofka.app.usecase.reserve.AddKitUseCase;
-import co.com.sofka.app.usecase.reserve.AddRoomUseCase;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
@@ -25,7 +21,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AddKitUseCaseTest {
+class AddKitUseCaseTest {
     private AddKitUseCase addKitUseCase;
 
     @Mock
@@ -57,7 +53,7 @@ public class AddKitUseCaseTest {
 
         AddedKit event = (AddedKit) events.get(0);
         Assertions.assertEquals("01",event.getKitId().value());
-        Assertions.assertEquals("Urgency",event.getType().value());
+        Assertions.assertEquals("Urgency",event.getKind().value());
         Assertions.assertEquals("Acetaminophen",event.getMedicine().value());
         Assertions.assertEquals("serum",event.getSupplie().value());
     }

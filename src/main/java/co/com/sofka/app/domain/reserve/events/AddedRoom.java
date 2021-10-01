@@ -8,14 +8,14 @@ import co.com.sofka.domain.generic.DomainEvent;
 
 public class AddedRoom extends DomainEvent {
     private final RoomId roomId;
-    private final Type type;
+    private final Type kind;
     private final Status status;
     private final BedsAmount bedsAmount;
 
     public AddedRoom(RoomId roomId, Type type, Status status, BedsAmount bedsAmount) {
         super("domain.reserve.addedroom");
         this.roomId = roomId;
-        this.type = type;
+        this.kind = type;
         this.status = status;
         this.bedsAmount = bedsAmount;
     }
@@ -24,8 +24,8 @@ public class AddedRoom extends DomainEvent {
         return roomId;
     }
 
-    public Type getType() {
-        return type;
+    public Type getKind() {
+        return kind;
     }
 
     public Status getStatus() {

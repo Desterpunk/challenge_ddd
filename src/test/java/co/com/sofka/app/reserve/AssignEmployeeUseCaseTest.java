@@ -31,7 +31,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AssignEmployeeUseCaseTest {
+class AssignEmployeeUseCaseTest {
     private AssignEmployeeUseCase assignEmployeeUseCase;
 
     @Mock

@@ -26,7 +26,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AddDoctorUseCaseTest {
+class AddDoctorUseCaseTest {
     private AddDoctorUseCase addDoctorUseCase;
 
     @Mock

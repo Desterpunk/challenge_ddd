@@ -6,22 +6,22 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Day implements ValueObject<Date> {
-    public final Date value;
+    public final Date date;
     public Day(Date value){
-        this.value = Objects.requireNonNull(value, "La fecha es necesaria");
+        this.date = Objects.requireNonNull(value, "La fecha es necesaria");
     }
     public Date value() {
-        return value;
+        return date;
     }
     @Override
     public boolean equals(Object o){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Day day = (Day) o;
-        return Objects.equals(value, day.value);
+        return Objects.equals(date, day.date);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(date);
     }
 }

@@ -32,7 +32,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AssignPatientUseCaseTest {
+class AssignPatientUseCaseTest {
     private AssignPatientUseCase assignPatientUseCase;
 
     @Mock

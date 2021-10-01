@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-public class CreateRegisterUseCaseTest {
+class CreateRegisterUseCaseTest {
     private CreateRegisterUseCase createRegisterUseCase;
 
     @BeforeEach
@@ -35,8 +35,8 @@ public class CreateRegisterUseCaseTest {
                 .getDomainEvents();
         //Assert
         AddedRegister event = (AddedRegister) events.get(0);
-        Assertions.assertEquals(2021, event.getDay().value.getYear());
-        Assertions.assertEquals(9, event.getDay().value.getMonth());
-        Assertions.assertEquals(8, event.getDay().value.getDate());
+        Assertions.assertEquals(2021, event.getDay().date.getYear());
+        Assertions.assertEquals(9, event.getDay().date.getMonth());
+        Assertions.assertEquals(8, event.getDay().date.getDate());
     }
 }

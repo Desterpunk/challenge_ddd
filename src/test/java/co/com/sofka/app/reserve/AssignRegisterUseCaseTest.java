@@ -31,7 +31,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AssignRegisterUseCaseTest {
+class AssignRegisterUseCaseTest {
     private AssignRegisterUseCase assignRegisterUseCase;
 
     @Mock

@@ -39,10 +39,10 @@ public class CreateReserveUseCaseTest {
 
         //Assert
         AddedReserve event = (AddedReserve) events.get(0);
-        Assertions.assertEquals(2021,event.getDay().value.getYear());
-        Assertions.assertEquals(9, event.getDay().value.getMonth());
-        Assertions.assertEquals(8, event.getDay().value.getDate());
-        Assertions.assertEquals(true, event.getPaymentStatus().value);
+        Assertions.assertEquals(2021,event.getDay().date.getYear());
+        Assertions.assertEquals(9, event.getDay().date.getMonth());
+        Assertions.assertEquals(8, event.getDay().date.getDate());
+        Assertions.assertEquals(true, event.getPaymentStatus().status);
     }
 
 }

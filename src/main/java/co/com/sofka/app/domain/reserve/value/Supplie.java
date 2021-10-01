@@ -1,6 +1,6 @@
 package co.com.sofka.app.domain.reserve.value;
 
-import co.com.sofka.app.domain.register.value.Observation;
+
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;

@@ -2,10 +2,10 @@ package co.com.sofka.app.domain.register.events;
 
 import co.com.sofka.app.domain.generic.PhoneNumber;
 import co.com.sofka.app.domain.register.value.DoctorId;
-import co.com.sofka.app.domain.register.value.PatientId;
+
 import co.com.sofka.domain.generic.DomainEvent;
 
-import java.util.UUID;
+
 
 public class UpdatedPhoneNumberDoctor extends DomainEvent {
     private final DoctorId doctorId;

@@ -23,7 +23,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 import java.util.List;
 
-public class AddProgressUseCaseTest {
+class AddProgressUseCaseTest {
     private AddProgressUseCase addProgressUseCase;
 
     @Mock
