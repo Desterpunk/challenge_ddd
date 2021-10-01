@@ -6,11 +6,15 @@ import co.com.sofka.app.domain.register.events.AddedRegister;
 import co.com.sofka.app.domain.register.events.AssignedPatient;
 import co.com.sofka.domain.generic.EventChange;
 
+import java.util.HashSet;
+
 public class RegisterChange extends EventChange {
     public RegisterChange (Register register){
-        apply((AddedRegister event) ->
-            register.day = event.getDay()
-        );
+        apply((AddedRegister event) -> {
+            register.day = event.getDay();
+            register.doctors = new HashSet<>();
+            register.progresses = new HashSet<>();
+        });
 
         apply((AddedDoctor event) -> {
             register.doctors.add(new Doctor(
